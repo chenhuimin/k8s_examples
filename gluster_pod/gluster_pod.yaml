@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: mygluster
+      image: node2:5000/ashiq/gluster-client
+      command: ["/usr/sbin/init"]
+      volumeMounts:
+      - mountPath: /home
+        name: gluster-default-volume
+  volumes:
+    - name: gluster-default-volume
+      persistentVolumeClaim:
+        claimName: glusterfs-claim
